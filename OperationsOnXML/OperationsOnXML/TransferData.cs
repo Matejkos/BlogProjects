@@ -22,14 +22,14 @@ namespace OperationsOnXML
         [XmlElement(ElementName ="ElementsCount")]
         public int DataCount
         {
-            get { return dataElementsCount; }
+            get { return DataElementsCount; }
             set { 
                     //noithing to do
                 }
         }
 
         [XmlIgnore]
-        public int dataElementsCount
+        public int DataElementsCount
         {
             get { return DataSet?.Count ?? 0; }
         }
