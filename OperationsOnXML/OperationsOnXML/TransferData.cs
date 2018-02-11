@@ -16,7 +16,7 @@ namespace OperationsOnXML
         [XmlAttribute(AttributeName = "Date")]
         public DateTime TimeStamp { get; set; }
 
-        [XmlElement("Data")]
+        [XmlElement("DataObject")]
         public List<KeyValueData> DataSet { get; set; }
 
         [XmlElement(ElementName ="ElementsCount")]
