@@ -31,6 +31,35 @@ namespace LinqObjectOperations
             Console.WriteLine($"object type before cast {objects.GetType()} aftere cast {castQuery.GetType()}");
             Console.WriteLine("\nCast:");
             Console.WriteLine(string.Join(" ", castQuery));
+
+            Console.WriteLine("\nWhere:");
+            Console.WriteLine(string.Join(" ", numbers.Where(n => n <= 5)));
+            Console.WriteLine("\nWhere with index:");
+            Console.WriteLine(string.Join(" ", numbers.Where((n, index) => n <= 5 || index > 8)));
+            var numbersDuplicated = new List<int>() { 1, 7, 0, 1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 8, 2, 7 };
+            Console.WriteLine("\nDistinct");
+            Console.WriteLine(string.Join(" ", numbersDuplicated.Distinct()));
+            var objectsDifferentTypes = new List<object>() { 0, "1", 2, 3.0, 4, "5", 6, 7, 8, 9 };
+            Console.WriteLine("\nOfType");
+            Console.WriteLine(string.Join(" ", objectsDifferentTypes.OfType<int>()));
+            Console.WriteLine("\nSingle");
+            int queryValue = numbersDuplicated.Single(n => n == 3);
+            //Console.WriteLine(numbers.Single(n => n < 0)); exception InvalidOperationException no number below zero
+            Console.WriteLine(queryValue);
+            Console.WriteLine("\nSingleOrDefault");
+            int queryValueDefault = numbersDuplicated.SingleOrDefault(n => n < 0);
+            Console.WriteLine(queryValueDefault);
+            Console.WriteLine("\nFirst");
+            int queryValueFirst = numbersDuplicated.First(n => n < 6);
+            int elementFirst = numbersDuplicated.First();
+
+            Console.WriteLine(queryValueFirst + " " + elementFirst);
+            Console.WriteLine("\nLast");
+            int queryValueLast = numbersDuplicated.Last(n => n < 6);
+            int elementLast = numbersDuplicated.Last();
+            Console.WriteLine(queryValueLast+ " " + elementLast);
+
+
             Console.ReadLine();
         }
 
