@@ -10,7 +10,7 @@ namespace LinqObjectOperations
     {
         static void Main(string[] args)
         {
-            var numbers = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            IEnumerable<int> numbers = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             Console.WriteLine("select :");
             Console.WriteLine(string.Join(" ", numbers.Select(n => Math.Pow(n, 2))));
             Console.WriteLine("\nselect Many :");
@@ -59,6 +59,11 @@ namespace LinqObjectOperations
             int elementLast = numbersDuplicated.Last();
             Console.WriteLine(queryValueLast+ " " + elementLast);
 
+            Console.WriteLine("OrderBy :");
+            Console.WriteLine(string.Join(" ", numbers.OrderBy(n=>n)));
+
+            Console.WriteLine("Reverse :");
+            Console.WriteLine(string.Join(" ", numbers.Reverse()));
 
             Console.ReadLine();
         }
