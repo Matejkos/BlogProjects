@@ -57,13 +57,63 @@ namespace LinqObjectOperations
             Console.WriteLine("\nLast");
             int queryValueLast = numbersDuplicated.Last(n => n < 6);
             int elementLast = numbersDuplicated.Last();
-            Console.WriteLine(queryValueLast+ " " + elementLast);
+            Console.WriteLine(queryValueLast + " " + elementLast);
 
             Console.WriteLine("OrderBy :");
-            Console.WriteLine(string.Join(" ", numbers.OrderBy(n=>n)));
+            Console.WriteLine(string.Join(" ", numbers.OrderBy(n => n)));
+            Console.WriteLine("OrderByDescending :");
+            Console.WriteLine(string.Join(" ", numbers.OrderByDescending(n => n)));
 
             Console.WriteLine("Reverse :");
             Console.WriteLine(string.Join(" ", numbers.Reverse()));
+
+            Console.WriteLine("Min :");
+            Console.WriteLine(string.Join(" ", numbers.Min()));
+            Console.WriteLine("Max :");
+            Console.WriteLine(string.Join(" ", numbers.Max()));
+
+            Console.WriteLine("Sum :");
+            Console.WriteLine(string.Join(" ", numbers.Sum()));
+            Console.WriteLine("Average :");
+            Console.WriteLine(string.Join(" ", numbers.Average()));
+            Console.WriteLine("Aggregate :");
+            Console.WriteLine(numbers.Aggregate(new Tuple<int, int>(1, 0), (acc, next) => new Tuple<int, int>(acc.Item1 + 1, acc.Item2 + (next * acc.Item1)), acc => acc.Item2));
+
+
+            Console.WriteLine("Count :");
+            Console.WriteLine(numbers.Count());
+            Console.WriteLine(numbers.Count(n => n % 2 == 0));
+
+            Console.WriteLine("Any :");
+            Console.WriteLine(numbers.Any(n => n < 0));
+
+            IEnumerable<int> numbers2 = new List<int>() { 6, 7, 8, 9, 10, 11, 14, 5 };
+            Console.WriteLine("Concat :");
+            Console.WriteLine(string.Join(" ", numbers.Concat(numbers2)));
+
+            Console.WriteLine("Union :");
+            Console.WriteLine(string.Join(" ", numbers.Union(numbers2)));
+
+            var orders = new List<OrderData>();
+
+            orders.Add(new OrderData() { ProductId = "prod1", ClientId = "client1", Amount = 3 });
+            orders.Add(new OrderData() { ProductId = "prod1", ClientId = "client2", Amount = 2 });
+            orders.Add(new OrderData() { ProductId = "prod1", ClientId = "client3", Amount = 1 });
+            orders.Add(new OrderData() { ProductId = "prod1", ClientId = "client4", Amount = 3 });
+            orders.Add(new OrderData() { ProductId = "prod3", ClientId = "client1", Amount = 3 });
+            orders.Add(new OrderData() { ProductId = "prod2", ClientId = "client1", Amount = 3 });
+            orders.Add(new OrderData() { ProductId = "prod2", ClientId = "client2", Amount = 3 });
+            orders.Add(new OrderData() { ProductId = "prod2", ClientId = "client4", Amount = 3 });
+
+            var clientGrops = orders.GroupBy(o => o.ClientId, o => o);
+            foreach(var client in clientGrops)
+            {
+                Console.WriteLine(client.Key);
+                foreach (var item in client)
+                {
+                    Console.WriteLine($"\t{item.ProductId} {item.Amount}");
+                }
+            }
 
             Console.ReadLine();
         }
