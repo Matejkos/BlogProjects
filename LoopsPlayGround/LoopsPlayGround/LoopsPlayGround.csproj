@@ -48,11 +48,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-<<<<<<< HEAD
-=======
-  <ItemGroup>
-    <Content Include="SimpleText.txt" />
-  </ItemGroup>
->>>>>>> refs/remotes/origin/master
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
